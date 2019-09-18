@@ -5,6 +5,30 @@ import { saveComment, fetchComments } from 'actions';
 class CommentBox extends Component {
   state = { comment: '' };
 
+  /*
+   * The following block of code is here because the lastpass extension
+   * breaks how the enter button works in textareas and logs an error to the
+   * cancel. The alternative would be to disable the lastpass extension from
+   * your web browser however this here for those using that extension
+   */
+  componentDidMount() {
+    document.addEventListener('keydown', this.handleHitEnterKey, true);
+  }
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.handleHitEnterKey, true);
+  }
+
+  handleHitEnterKey = e => {
+    const ENTERY_KEY_CODE = 13;
+    if (
+      e.target.name === 'comment_input' &&
+      (e.key === 'Enter' || e.keyCode === ENTERY_KEY_CODE)
+    ) {
+      e.stopPropagation();
+    }
+  };
+  /* ******************************************************************* */
+
   handleChange = event => {
     this.setState({ comment: event.target.value });
   };
@@ -25,7 +49,11 @@ class CommentBox extends Component {
         <form onSubmit={this.handleSubmit} className="ui form">
           <div className="field">
             <label className="ui header large">Add a comment</label>
-            <textarea onChange={this.handleChange} value={this.state.comment} />
+            <textarea
+              name="comment_input"
+              onChange={this.handleChange}
+              value={this.state.comment}
+            />
           </div>
           <button className="ui button fluid primary">Submit Comment</button>
         </form>

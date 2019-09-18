@@ -37,9 +37,10 @@ class App extends Component {
   }
 
   renderPostsButton() {
+    const postActive = this.props.location.pathname === '/post' ? 'active' : '';
     const PostButton = () => {
       return (
-        <Link to="/post" className="item">
+        <Link to="/post" className={`item ${postActive}`}>
           Post
         </Link>
       );
@@ -48,11 +49,12 @@ class App extends Component {
   }
 
   renderHeader() {
+    const homeActive = this.props.location.pathname === '/' ? 'active' : '';
     return (
       <div className="ui borderless menu fixed">
         <div className="ui container grid">
           <div className="row">
-            <Link to="/" className="item">
+            <Link to="/" className={`item ${homeActive}`}>
               Home
             </Link>
             {this.renderPostsButton()}

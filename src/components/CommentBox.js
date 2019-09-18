@@ -22,14 +22,18 @@ class CommentBox extends Component {
   render() {
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
-          <h4>Add a comment</h4>
-          <textarea onChange={this.handleChange} value={this.state.comment} />
-          <div>
-            <button>Submit Comment</button>
+        <form onSubmit={this.handleSubmit} className="ui form">
+          <div className="field">
+            <label className="ui header large">Add a comment</label>
+            <textarea onChange={this.handleChange} value={this.state.comment} />
           </div>
+          <button className="ui button fluid primary">Submit Comment</button>
         </form>
-        <button className="fetch-comments" onClick={this.props.fetchComments}>
+        <button
+          className="ui button fluid fetch-comments"
+          style={{ marginTop: '1em' }}
+          onClick={this.props.fetchComments}
+        >
           Fetch Comments
         </button>
       </div>

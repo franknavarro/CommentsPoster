@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { saveComment, fetchComments } from 'actions';
+import requireAuth from 'components/requireAuth';
 
 class CommentBox extends Component {
   state = { comment: '' };
-
   /*
    * The following block of code is here because the lastpass extension
    * breaks how the enter button works in textareas and logs an error to the
@@ -72,4 +72,4 @@ class CommentBox extends Component {
 export default connect(
   null,
   { saveComment, fetchComments },
-)(CommentBox);
+)(requireAuth(CommentBox));

@@ -17,7 +17,7 @@ beforeEach(() => {
 });
 
 it('creates on li per comment', () => {
-  expect(wrapped.find('li').length).toEqual(2);
+  expect(wrapped.find('.segment').length).toEqual(2);
 });
 
 it('shows the text for each comment', () => {

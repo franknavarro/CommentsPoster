@@ -13,7 +13,12 @@ class CommentList extends Component {
   };
 
   render() {
-    return <div className="ui comments">{this.renderComments()}</div>;
+    return (
+      <div className="ui comments">
+        <h2 className="ui header">Comments</h2>
+        {this.renderComments()}
+      </div>
+    );
   }
 }
 
